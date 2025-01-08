@@ -3,25 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Pop-Up</title>
-    <script>
-        function openPopup() {
-            const popupUrl = "https://www.example.com"; // Linkul dorit
-            const popupWidth = 800;
-            const popupHeight = 600;
-            const left = (screen.width - popupWidth) / 2;
-            const top = (screen.height - popupHeight) / 2;
-
-            window.open(
-                popupUrl,
-                "popupWindow",
-                `width=${popupWidth},height=${popupHeight},top=${top},left=${left},resizable=yes`
-            );
+    <title>Mobile Pop-Up</title>
+    <style>
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+    <script>
+        function detectMobile() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            // Check for common mobile device indicators
+            return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+        }
+
+        function showPopup() {
+            if (detectMobile()) {
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('popup').style.display = 'block';
+            }
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        window.onload = showPopup;
     </script>
 </head>
 <body>
-    <h1>Deschidere Pop-Up</h1>
-    <button onclick="openPopup()">Deschide pagina</button>
+    <h1>Welcome to the Mobile Pop-Up Demo</h1>
+    <p>This page detects mobile devices and shows a pop-up.</p>
+
+    <div id="overlay" onclick="closePopup()"></div>
+    <div id="popup">
+        <h2>Special Offer!</h2>
+        <p>This is a pop-up for mobile users.</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
 </body>
 </html>
