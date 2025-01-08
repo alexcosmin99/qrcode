@@ -3,27 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Pop-Up</title>
-    <script>
-        function openPopup() {
-            const popupUrl = "https://youtube.com"; // Linkul dorit
-            const popupWidth = 800;
-            const popupHeight = 600;
-            const left = (screen.width - popupWidth) / 2;
-            const top = (screen.height - popupHeight) / 2;
-
-            window.open(
-                popupUrl,
-                "popupWindow",
-                `width=${popupWidth},height=${popupHeight},top=${top},left=${left},resizable=yes`
-            );
-        }
-
-        // Deschide pop-up-ul la încărcarea paginii
-        window.onload = openPopup;
-    </script>
+    <title>QR Pop-Up Alternative</title>
 </head>
 <body>
-    <h1>Deschidem pagina...</h1>
+    <h1>Pagina încorporată</h1>
+    <iframe src="https://www.youtube.com" width="800" height="600" style="border:none;"></iframe>
 </body>
 </html>
