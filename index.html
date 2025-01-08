@@ -55,18 +55,54 @@
         button:hover {
             background-color: #2980b9;
         }
+
+        /* Style for the input field and the display area */
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #userTextDisplay {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
     </style>
     <script>
         window.onload = function() {
             // Display the overlay and pop-up when the page loads
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('popup').style.display = 'block';
+
+            // Check if there's saved text in localStorage and display it
+            const savedText = localStorage.getItem('userText');
+            if (savedText) {
+                document.getElementById('userTextDisplay').innerText = savedText;
+            }
         }
 
         function closePopup() {
             // Hide the overlay and pop-up when the button is clicked
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
+        }
+
+        function saveText() {
+            // Get the input value and display it
+            const userInput = document.getElementById('userInput').value;
+            document.getElementById('userTextDisplay').innerText = userInput;
+
+            // Save the text in localStorage so it persists across page reloads
+            localStorage.setItem('userText', userInput);
+
+            // Optionally clear the input field after saving
+            document.getElementById('userInput').value = '';
         }
     </script>
 </head>
@@ -77,8 +113,19 @@
     <!-- Pop-up/modal -->
     <div id="popup">
         <h2>This is your pop-up message!</h2>
-        <p>Click the button below to close it.</p>
+        <p>Enter your text below:</p>
+
+        <!-- Text input area -->
+        <textarea id="userInput" placeholder="Type your text here..."></textarea>
+        
+        <!-- Button to save text -->
+        <button onclick="saveText()">Save Text</button>
+        
+        <!-- Button to close the pop-up -->
         <button onclick="closePopup()">Close</button>
+
+        <!-- Display saved text -->
+        <div id="userTextDisplay"></div>
     </div>
 </body>
 </html>
