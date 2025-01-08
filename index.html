@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Pop-Up Alternative</title>
+    <title>QR Pop-Up</title>
+    <script>
+        function openPopup() {
+            const popupUrl = "https://www.example.com"; // Linkul dorit
+            const popupWidth = 800;
+            const popupHeight = 600;
+            const left = (screen.width - popupWidth) / 2;
+            const top = (screen.height - popupHeight) / 2;
+
+            window.open(
+                popupUrl,
+                "popupWindow",
+                `width=${popupWidth},height=${popupHeight},top=${top},left=${left},resizable=yes`
+            );
+        }
+    </script>
 </head>
 <body>
-    <h1>Pagina încorporată</h1>
-    <iframe src="https://www.google.com/imgres?q=youtube%20logo&imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F09%2FYouTube_full-color_icon_%25282017%2529.svg%2F512px-YouTube_full-color_icon_%25282017%2529.svg.png&imgrefurl=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3AYouTube_full-color_icon_(2017).svg&docid=Z1iAIWiL25dVZM&tbnid=dDR5TBQ1J64_4M&vet=12ahUKEwiN44O57OaKAxUA7rsIHUxkBXwQM3oFCIgBEAA..i&w=512&h=359&hcb=2&ved=2ahUKEwiN44O57OaKAxUA7rsIHUxkBXwQM3oFCIgBEAA" width="800" height="600" style="border:none;"></iframe>
+    <h1>Deschidere Pop-Up</h1>
+    <button onclick="openPopup()">Deschide pagina</button>
 </body>
 </html>
