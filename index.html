@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Pop-Up</title>
+    <title>Pop-up with Blue Background</title>
     <style>
-        #popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            padding: 20px;
-            background: white;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
+        /* Full page background color */
+        body {
+            background-color: #3498db; /* Blue background */
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+        /* The overlay (semi-transparent background behind the modal) */
         #overlay {
             display: none;
             position: fixed;
@@ -25,40 +23,61 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
             z-index: 999;
+        }
+
+        /* The modal itself */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-radius: 8px;
+        }
+
+        /* Button to close the modal */
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
         }
     </style>
     <script>
-        function detectMobile() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            // Check for common mobile device indicators
-            return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-        }
-
-        function showPopup() {
-            if (detectMobile()) {
-                document.getElementById('overlay').style.display = 'block';
-                document.getElementById('popup').style.display = 'block';
-            }
+        window.onload = function() {
+            // Display the overlay and pop-up when the page loads
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
         }
 
         function closePopup() {
+            // Hide the overlay and pop-up when the button is clicked
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
         }
-
-        window.onload = showPopup;
     </script>
 </head>
 <body>
-    <h1>Welcome to the Mobile Pop-Up Demo</h1>
-    <p>This page detects mobile devices and shows a pop-up.</p>
-
+    <!-- Overlay (dark background) -->
     <div id="overlay" onclick="closePopup()"></div>
+
+    <!-- Pop-up/modal -->
     <div id="popup">
-        <h2>Special Offer!</h2>
-        <p>This is a pop-up for mobile users.</p>
+        <h2>This is your pop-up message!</h2>
+        <p>Click anywhere outside the box to close it, or click the button below.</p>
         <button onclick="closePopup()">Close</button>
     </div>
 </body>
